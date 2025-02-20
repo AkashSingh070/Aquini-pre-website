@@ -3,6 +3,9 @@ import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
 import { motion } from "framer-motion";
 import Header from "./Components/Header/Index";
+import img01 from "./assets/01.webp";
+import img02 from "./assets/02.webp";
+import img03 from "./assets/03.webp";
 
 // Register GSAP plugin
 gsap.registerPlugin(Observer);
@@ -101,7 +104,7 @@ const AnimatedSections = () => {
   ];
 
   // Colors for the outer container.
-  const bgColors = ["#1abc9c", "#3498db", "#9b59b6", "#e67e22", "#e74c3c"];
+  const bgImages = [img01, img02, img03];
 
   return (
     <>
@@ -121,14 +124,20 @@ const AnimatedSections = () => {
                 <div
                   className="bg flex items-center justify-center flex-col absolute inset-0 bg-cover bg-center"
                   // Outer background color remains as defined here.
-                  style={{ backgroundColor: bgColors[index] }}
+                  style={{
+                    backgroundImage: `url(${
+                      bgImages[index % bgImages.length]
+                    })`,
+                  }}
                 >
                   <div
-                    className="inner-container mx-auto h-[50vh] w-2/3 z-10"
+                    className="inner-container mx-auto h-auto w-2/3 z-10"
                     // The inner-container background color uses the reversed order
                     // to create the reverse color effect relative to the outer.
                     style={{
-                      backgroundColor: bgColors[bgColors.length - 1 - index],
+                      backgroundImage: `url(${
+                        bgImages[index % bgImages.length]
+                      })`,
                     }}
                   ></div>
                   <h2 className="section-heading z-20 text-center text-[clamp(1rem,5vw,5rem)] font-normal tracking-[0.5em] w-[90vw] max-w-[1200px]">
