@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
 import { motion } from "framer-motion";
@@ -20,19 +20,21 @@ const AnimatedSections = () => {
     const innerWrappers = gsap.utils.toArray(
       container.querySelectorAll(".inner")
     );
-    // Add reference to inner-containers
+    // Gather innerContainers but DO NOT set yPercent for them now,
+    // so they remain fixed.
     const innerContainers = gsap.utils.toArray(
       container.querySelectorAll(".inner-container")
     );
+    // Removed: gsap.set(innerContainers, { yPercent: 100 });
 
     let currentIndex = -1;
     const wrap = gsap.utils.wrap(0, sections.length);
     let animating = false;
 
+    // Set outer and inner wrappers as before.
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
-    // Set initial horizontal position for inner-containers
-    gsap.set(innerContainers, { xPercent: 100 });
+    // The inner-container will now remain fixed (no yPercent set).
 
     function gotoSection(index, direction) {
       index = wrap(index);
@@ -45,13 +47,15 @@ const AnimatedSections = () => {
       });
 
       if (currentIndex >= 0) {
+        // Fade out the previous section and add a slight parallax on its image.
         gsap.set(sections[currentIndex], { zIndex: 0 });
-        tl.to(images[currentIndex], { yPercent: -15 * dFactor }).set(
+        tl.to(images[currentIndex], { yPercent: -0 * dFactor }).set(
           sections[currentIndex],
           { autoAlpha: 0 }
         );
       }
 
+      // Prepare the new section for display.
       gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
       tl.fromTo(
         [outerWrappers[index], innerWrappers[index]],
@@ -59,18 +63,19 @@ const AnimatedSections = () => {
         { yPercent: 0 },
         0
       )
-        // Add animation for inner-container
-        .fromTo(
-          innerContainers[index],
-          { xPercent: 100 * dFactor }, // Reverse horizontal direction
-          { xPercent: 0 },
-          0
-        )
-        .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0);
+        // Removed inner-container parallax tween so it remains fixed:
+        // .fromTo(
+        //   innerContainers[index],
+        //   { yPercent: 100 * dFactor },
+        //   { yPercent: 0 },
+        //   0
+        // )
+        .fromTo(images[index], { yPercent: 0 * dFactor }, { yPercent: 0 }, 0);
 
       currentIndex = index;
     }
 
+    // Set up the Observer for scroll, touch, and pointer events.
     Observer.create({
       type: "wheel,touch,pointer",
       wheelSpeed: -1,
@@ -80,6 +85,7 @@ const AnimatedSections = () => {
       preventDefault: true,
     });
 
+    // Start on the first section.
     gotoSection(0, 1);
 
     return () => Observer.getAll().forEach((obs) => obs.kill());
@@ -94,6 +100,7 @@ const AnimatedSections = () => {
     { id: "fifth", heading: "Keep scrolling" },
   ];
 
+  // Colors for the outer container.
   const bgColors = ["#1abc9c", "#3498db", "#9b59b6", "#e67e22", "#e74c3c"];
 
   return (
@@ -113,10 +120,13 @@ const AnimatedSections = () => {
               <div className="inner w-full h-full overflow-y-hidden">
                 <div
                   className="bg flex items-center justify-center flex-col absolute inset-0 bg-cover bg-center"
+                  // Outer background color remains as defined here.
                   style={{ backgroundColor: bgColors[index] }}
                 >
                   <div
-                    className="inner-container mx-auto h-[50vh] w-2/3 bg-white z-10"
+                    className="inner-container mx-auto h-[50vh] w-2/3 z-10"
+                    // The inner-container background color uses the reversed order
+                    // to create the reverse color effect relative to the outer.
                     style={{
                       backgroundColor: bgColors[bgColors.length - 1 - index],
                     }}
