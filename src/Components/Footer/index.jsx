@@ -12,12 +12,14 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+import { LuDownload } from "react-icons/lu";
+
 const footerData = {
   contact: {
     phones: ["+91 94127 27707"],
-    email: ["info@plumberbathware.com"],
+    email: ["Sales@aquini.com"],
     address:
-      "AQUA PLUMBINGS PVT. LTD./nGaur Udyog Kendra/nDelhi-Mathura Bypass/nMathura - 281001(U.P.), India",
+      "AQUA PLUMBINGS PVT. LTD.<br/>Gaur Udyog Kendra<br/>Delhi-Mathura Bypass<br/>Mathura - 281001(U.P.), India",
   },
   social: [
     {
@@ -48,68 +50,55 @@ const footerData = {
   ],
 };
 
-const Index = () => {
+const Index = ({ isActive }) => {
   const currentYear = new Date().getFullYear();
 
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "end end"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
-
   const ContactIcon = ({ icon: Icon, children }) => (
-    <div className="flex items-center gap-2 text-neutral-400">
-      <Icon className="!w-4 !h-4 text-primary" />
+    <div className="flex items-center gap-2 primary-color fill-primary">
+      <Icon className="!w-8 !h-8 primary-color fill-primary" />
       {children}
     </div>
   );
 
   return (
     <footer className="w-full float-left overflow-hidden">
-      <motion.div
-        style={{ y }}
-        ref={container}
-        className="pt-24 flex flex-col items-center justify-center relative bg-[#000d19] text-white/50"
-      >
-        <div className="container mx-auto max-w-[90%] px-4">
+      <div className="pt-24 flex flex-col items-center justify-center relative bg-black text-white/90">
+        <div
+          className={`container mx-auto max-w-[90%] px-4 opacity-0 ease duration-1000 delay-1000 ${
+            isActive === 3 ? "opacity-100" : ""
+          }`}
+        >
+          <div className="flex justify-center items-center flex-col w-full">
+            <div className=" title  titleFooter w-1/2 text-[18px] tracking-[1.5px] flex  items-center justify-center mb-10  ">
+              <h2 className="!text-center text-wrap !opacity-100">
+                Stay Tuned for More
+                <br /> Dive into the Aquini Consumer Handbook
+              </h2>
+            </div>
+            <span className="uppercase primary-color Heading_font  text-[16px] tracking-[1.5px] mx-auto inline-block  mb-10">
+              Download Now
+            </span>
+            <i className="primary-color fill-primary text-[40px] ">
+              <LuDownload />
+            </i>
+          </div>
           {/* Top Footer Section */}
-          <div className="flex flex-wrap justify-between border-b border-white/10 py-12 md:py-16">
+          <div className="flex flex-wrap justify-between border-y border-white/10 py-12 md:py-24 my-10">
             {/* Logo */}
 
             {/* Contact Info */}
             <div className="w-full md:w-1/6 mb-8 md:mb-0">
               <ul className="space-y-3 mx-auto w-fit">
-                <li className="text-primary font-semibold text-base mb-4">
-                  <ContactIcon icon={FaPhoneAlt}>Contact</ContactIcon>
+                <li className="primary-color font-semibold text-xl mb-4">
+                  <ContactIcon icon={FaPhoneAlt}></ContactIcon>
                 </li>
                 {footerData.contact.phones.map((phone, index) => (
                   <li key={index}>
                     <a
                       href={`tel:${phone}`}
-                      className="text-neutral-400 hover:text-neutral-300 text-sm"
+                      className="text-neutral-300  hover:text-white tracking-[1.5px]  "
                     >
                       {phone}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Email */}
-            <div className="w-full md:w-1/6 mb-8 md:mb-0">
-              <ul className="space-y-3 mx-auto w-fit">
-                <li className="text-primary font-semibold text-base mb-4">
-                  <ContactIcon icon={FaEnvelope}>Email</ContactIcon>
-                </li>
-                {footerData.contact.email.map((email, index) => (
-                  <li key={index}>
-                    <a
-                      href={`mailto:${email}`}
-                      className="text-neutral-400 hover:text-neutral-300 text-sm lowercase"
-                    >
-                      {email}
                     </a>
                   </li>
                 ))}
@@ -119,19 +108,41 @@ const Index = () => {
             {/* Address */}
             <div className="w-full md:w-1/4 mb-8 md:mb-0">
               <ul className="space-y-3 mx-auto w-fit">
-                <li className="text-primary font-semibold text-base mb-4">
-                  <ContactIcon  icon={FaMapMarkerAlt}>Address</ContactIcon>
+                <li className="primary-color font-semibold text-xl mb-4">
+                  <ContactIcon icon={FaMapMarkerAlt}></ContactIcon>
                 </li>
-                <li className="text-neutral-400 text-sm leading-6 whitespace-pre-line">
-                  {footerData.contact.address}
+                <li
+                  className="text-neutral-300  hover:text-white  whitespace-pre-line tracking-[1.5px] leading-[1.5]"
+                  dangerouslySetInnerHTML={{
+                    __html: footerData.contact.address,
+                  }}
+                ></li>
+              </ul>
+            </div>
+
+            {/* Email */}
+            <div className="w-full md:w-1/6 mb-8 md:mb-0">
+              <ul className="space-y-3 mx-auto w-fit">
+                <li className="primary-color font-semibold text-xl mb-4">
+                  <ContactIcon icon={FaEnvelope}></ContactIcon>
                 </li>
+                {footerData.contact.email.map((email, index) => (
+                  <li key={index}>
+                    <a
+                      href={`mailto:${email}`}
+                      className="text-neutral-300 hover:text-white  lowercase tracking-[1.5px]"
+                    >
+                      {email}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Social Media */}
             <div className="w-full md:w-1/6">
               <ul>
-                <li className="text-primary font-semibold text-base mb-4">
+                <li className="primary-color font-semibold text-xl mb-4">
                   Follow on
                 </li>
                 <div className="flex gap-4">
@@ -144,7 +155,7 @@ const Index = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={item.label}
-                        className="text-neutral-400 hover:text-white transition-colors"
+                        className=" hover:text-white transition-colors text-neutral-300"
                       >
                         <Icon size={20} />
                       </a>
@@ -156,14 +167,14 @@ const Index = () => {
           </div>
 
           {/* Copyright Section */}
-          <div className="flex flex-wrap justify-between items-center py-6 border-t border-white/10">
-            <p className="text-neutral-400 text-xs ">
-              © {currentYear} Plumber Bathware | All rights reserved.
+          <div className="flex flex-wrap justify-between items-center py-6 mx-5 ">
+            <p className="!text-neutral-300 text-xs ">
+              © {currentYear} Plumber | All rights reserved.
             </p>
-            <p className="text-neutral-400 text-xs ">
+            <p className="!text-neutral-300  hover:text-white text-xs ">
               <a
                 href="https://akashsingh.in/"
-                className=" text-xs hover:text-neutral-300"
+                className=" text-xs "
                 rel="nofollow"
                 target="_blank"
               >
@@ -172,7 +183,7 @@ const Index = () => {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 };

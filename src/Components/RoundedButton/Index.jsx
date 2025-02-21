@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import styles from "./style.module.scss";
 import gsap from "gsap";
-import Magnetic from "../Magnetic/Index";
 
 const Index = ({ children, backgroundColor = "#eb2128", ...attributes }) => {
   const circle = useRef(null);
@@ -34,26 +33,24 @@ const Index = ({ children, backgroundColor = "#eb2128", ...attributes }) => {
     }, 300);
   };
   return (
-    <Magnetic>
+    <div
+      className={styles.roundedButton}
+      style={{ overflow: "hidden" }}
+      onMouseEnter={() => {
+        manageMouseEnter();
+      }}
+      onMouseLeave={() => {
+        manageMouseLeave();
+      }}
+      {...attributes}
+    >
+      {children}
       <div
-        className={styles.roundedButton}
-        style={{ overflow: "hidden" }}
-        onMouseEnter={() => {
-          manageMouseEnter();
-        }}
-        onMouseLeave={() => {
-          manageMouseLeave();
-        }}
-        {...attributes}
-      >
-        {children}
-        <div
-          ref={circle}
-          style={{ backgroundColor }}
-          className={styles.circle}
-        ></div>
-      </div>
-    </Magnetic>
+        ref={circle}
+        style={{ backgroundColor }}
+        className={styles.circle}
+      ></div>
+    </div>
   );
 };
 

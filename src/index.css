@@ -1,18 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --main-font-size: 17px;
+  --main-line-height: 24px;
+  --headingFont: "OPTICopperplate", sans-serif;
+  --bodyFont: "Source Sans 3", serif;
+  --primary: rgb(163 129 68);
+  --secondary: rgb(163 129 68);
+  --white: #fff;
+  --black: #000;
+  --grey: #f1f2f2;
+  --smallFont: 12px;
+  --midFont: 14px;
+  --smallHeight: 20px;
+  --letter3: 3px;
+  --letter2: 2px;
+  --uppercase: uppercase;
+  --letter1: 1px;
+  --black70: hsl(0deg 0% 0% / 50%);
+  --container: 90%;
+  --webcontainer: 1120px;
 }
 
 svg {
@@ -23,4 +31,150 @@ svg {
 .fil0 {
   fill: #a5854e;
 }
+.primary-color {
+  color: var(--primary);
+}
+.Heading_font {
+  font-family: var(--headingFont);
+  font-weight: 300;
+}
 
+.title01 {
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  font-size: 17px;
+  transform: translate(-50%, -50%);
+  letter-spacing: 2px;
+}
+
+.title01:before {
+  background-color: var(--primary);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  left: -15%;
+  position: absolute;
+  top: -15%;
+  max-width: 0px;
+  transition: max-width 1s ease 1s, width 1s ease 1s;
+}
+.title01.active:before {
+  max-width: 110px;
+  width: 100%;
+}
+.title01:not(.active):before {
+  max-width: 0px;
+  width: 0%;
+}
+
+.title h2,
+.title h1 {
+  font-family: var(--headingFont);
+  font-weight: 300;
+  line-height: 32px;
+  pointer-events: all;
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 1s ease 1s;
+  color: var(--primary);
+}
+.para_text {
+  transition: opacity 1.5s ease 1.2s;
+  opacity: 0;
+}
+
+.para_text.active,
+.title.active,
+.title.active h2,
+.title.active h1 {
+  opacity: 1;
+}
+
+.title01 {
+  top: inherit;
+  right: 10vw;
+  bottom: 20vh;
+  transform: inherit;
+  left: inherit;
+}
+
+p {
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--primary);
+  font-family: var(--bodyFont);
+}
+body {
+  font-family: var(--bodyFont);
+  font-size: var(--main-font-size);
+  line-height: var(--main-line-height);
+  margin: 0;
+  padding: 0;
+  color: var(--primary);
+  font-optical-sizing: auto;
+  overflow: hidden;
+}
+.title02 h2 {
+  letter-spacing: 7px;
+  font-size: 14px;
+}
+.title02 h2 span {
+  letter-spacing: 1px;
+  font-size: 36px;
+  font-family: "Copperplate CC", serif;
+  /* font-weight: 300; */
+  line-height: 1.5;
+}
+.title02 h2 p {
+  font-family: "Adobe Garamond Pro", serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 3.5px;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  text-transform: none;
+}
+/* .titleFooter h2 {
+  text-wrap: balance;
+} */
+
+.bg_blur::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1); /* 10% opacity black background */
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px); /* For Safari support */
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+/* bg_blur relative overflow-hidden */
+
+section {
+  isolation: isolate;
+}
+
+:focus {
+  outline: none !important;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 20px);
+  transform: translateX(-50%);
+  z-index: 20;
+  cursor: pointer;
+  padding: 0 20px;
+}

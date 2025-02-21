@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
 import Header from "./Components/Header/Index";
@@ -6,17 +6,19 @@ import Footer from "./Components/Footer/Index";
 import img01 from "./assets/01.webp";
 import img02 from "./assets/02.webp";
 import img03 from "./assets/03.webp";
+import BGimg03 from "./assets/slideBG-01.webp";
 
-// Register GSAP plugin
 gsap.registerPlugin(Observer);
 
 const AnimatedSections = () => {
   const containerRef = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
     const sections = container.querySelectorAll("section");
     const images = container.querySelectorAll(".bg");
+    const titles = container.querySelectorAll(".title");
     const outerWrappers = gsap.utils.toArray(
       container.querySelectorAll(".outer")
     );
@@ -30,15 +32,15 @@ const AnimatedSections = () => {
     let currentIndex = 0;
     let animating = false;
 
-    // Set initial positions for outer and inner wrappers.
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
     innerContainers.forEach((el) =>
-      gsap.set(el, { backgroundPosition: "center center" })
+      gsap.set(el, { backgroundPosition: "center center", force3D: true })
     );
 
-    // Immediately display the first section.
     gsap.set(sections[currentIndex], { autoAlpha: 1, zIndex: 1 });
+    titles[currentIndex].classList.add("active");
+
     gsap.fromTo(
       [outerWrappers[currentIndex], innerWrappers[currentIndex]],
       { yPercent: (i) => (i ? -100 : 100) },
@@ -48,20 +50,25 @@ const AnimatedSections = () => {
     function gotoSection(index, direction) {
       if (index < 0 || index >= sections.length) return;
       animating = true;
+      setActiveSlide(index);
+
       const dFactor = direction === -1 ? -1 : 1;
       const tl = gsap.timeline({
         defaults: { duration: 1.25, ease: "power1.inOut" },
         onComplete: () => (animating = false),
       });
 
-      // Fade out previous section
+      if (titles[currentIndex]) titles[currentIndex].classList.remove("active");
+
       gsap.set(sections[currentIndex], { zIndex: 0 });
       tl.to(images[currentIndex], { yPercent: 0 }).set(sections[currentIndex], {
         autoAlpha: 0,
       });
 
-      // Prepare new section
       gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
+
+      if (titles[index]) titles[index].classList.add("active");
+
       tl.fromTo(
         [outerWrappers[index], innerWrappers[index]],
         { yPercent: (i) => (i ? -100 * dFactor : 100 * dFactor) },
@@ -69,14 +76,10 @@ const AnimatedSections = () => {
         0
       );
 
-      // Only animate inner-container for first 3 slides
       if (index < 3) {
         tl.fromTo(
           innerContainers[index],
-          {
-            backgroundPosition:
-              direction === 1 ? "center top" : "center bottom",
-          },
+          { backgroundPosition: "center center" },
           { backgroundPosition: "center center" },
           0
         );
@@ -86,6 +89,7 @@ const AnimatedSections = () => {
     }
 
     Observer.create({
+      target: container,
       type: "wheel,touch,pointer",
       wheelSpeed: 1,
       onDown: () => {
@@ -102,53 +106,155 @@ const AnimatedSections = () => {
       preventDefault: true,
     });
 
-    return () => Observer.getAll().forEach((obs) => obs.kill());
-  }, []);
+    const handleKeyDown = (event) => {
+      if (
+        event.key === "ArrowDown" &&
+        !animating &&
+        currentIndex < sections.length - 1
+      ) {
+        gotoSection(currentIndex + 1, 1);
+      } else if (event.key === "ArrowUp" && !animating && currentIndex > 0) {
+        gotoSection(currentIndex - 1, -1);
+      }
+    };
 
-  // Updated sections data with footer as 4th slide
-  const sectionsData = [
-    { id: "first", heading: "Scroll down", bg: img01 },
-    { id: "second", heading: "Animated with GSAP", bg: img02 },
-    { id: "third", heading: "GreenSock", bg: img03 },
-    { id: "footer", heading: "Footer Section" },
-  ];
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      Observer.getAll().forEach((obs) => obs.kill());
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
-      <Header />
+      <Header isLoaded={isLoaded} />
+
       <div
         ref={containerRef}
-        className="bg-black text-white font-serif uppercase min-h-screen"
+        className="min-h-screen w-full relative min-w-screen"
       >
-        {sectionsData.map((section, index) => (
-          <section
-            key={section.id}
-            className="fixed top-0 h-full w-full invisible"
-          >
-            <div className="outer w-full h-full overflow-y-hidden">
-              <div className="inner w-full h-full overflow-y-hidden relative">
-                {index === 3 ? (
-                  // Footer Section
-                  <div className="bg-black flex items-center justify-center absolute inset-0">
-                    <Footer />
+        {/* First Section */}
+        <section id="first" className="fixed top-0 h-full w-full invisible">
+          <div className="outer w-full h-full overflow-y-hidden">
+            <div className="inner w-full h-full overflow-y-hidden">
+              <div
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
+                style={{ backgroundImage: `url(${BGimg03})` }}
+              >
+                <div class="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
+                <div
+                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  style={{ backgroundImage: `url(${img03})` }}
+                >
+                  <div className="relative z-10 text-center w-full h-full">
+                    <div className="title title01">
+                      <h1>
+                        AN EXCLUSIVE EXPERIENCE <br />
+                        IS TAKING SHAPE
+                      </h1>
+                    </div>
                   </div>
-                ) : (
-                  // Regular Slides
-                  <div
-                    className="bg flex  justify-center items-end flex-col absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${section.bg})` }}
-                  >
-                    <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
-                    <div
-                      className="inner-container mx-auto h-auto w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
-                      style={{ backgroundImage: `url(${section.bg})` }}
-                    ></div>
-                  </div>
-                )}
+                </div>
+              </div>
+              <div class="animate-bounce scroll-down h-20 ease-in duration-500">
+                <span className="h-20 w-[1px] bg-white flex"></span>
               </div>
             </div>
-          </section>
-        ))}
+          </div>
+        </section>
+        {/* Second Section */}
+        <section id="second" className="fixed top-0 h-full w-full invisible">
+          <div className="outer w-full h-full overflow-y-hidden">
+            <div className="inner w-full h-full overflow-y-hidden relative">
+              <div
+                className="bg flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
+                style={{ backgroundImage: `url(${img02})` }}
+              >
+                <div class="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
+                <div
+                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  style={{ backgroundImage: `url(${img02})` }}
+                >
+                  <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
+                    <div className="title w-1/2 text-[30px] tracking-[3px] flex items-center justify-center mt-[25%] ml-10">
+                      <h2>DESIGN MEETS DESIRE.</h2>
+                    </div>
+                    <div className="flex items-center justify-center w-1/2">
+                      <p
+                        className={`uppercase tracking-[4px] leading-[1.8] pl-6 text-[19px] text-left mx-auto w-9/12 para_text ${
+                          activeSlide === 1 ? "active" : ""
+                        }`}
+                      >
+                        Aquini brings you products that meet International
+                        standards of excellence, offering you both style and
+                        durability for your private sanctuary. Conceptualized in
+                        world renowned design studios, Aquini’s latest
+                        collection reflects the perfect balance of innovation
+                        and timeless elegance. Whether you’re drawn to graceful
+                        curves or sleek, futuristic lines, our diverse selection
+                        is tailored to match your indulgence in the ultimate
+                        luxury and design with Aquini.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="animate-bounce scroll-down h-20  ease-in duration-500">
+                <span className="h-20 w-[1px] bg-white flex"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Third Section */}
+        <section id="third" className="fixed top-0 h-full w-full invisible">
+          <div className="outer w-full h-full overflow-y-hidden">
+            <div className="inner w-full h-full overflow-y-hidden relative">
+              <div
+                className="bg flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
+                style={{ backgroundImage: `url(${img01})` }}
+              >
+                <div class="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
+                <div
+                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  style={{ backgroundImage: `url(${img01})` }}
+                >
+                  <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
+                    <div className="title title02 mt-14">
+                      <h2 className="!text-center">
+                        Revealing Soon
+                        <br /> <span>van gogh</span>
+                        <p>Collection</p>
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="animate-bounce scroll-down h-20 ease-in duration-500">
+                <span className="h-20 w-[1px] bg-white flex"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Footer Section */}
+        <section id="footer" className="fixed top-0 h-full w-full invisible">
+          <div className="outer w-full h-full overflow-y-hidden">
+            <div className="inner w-full h-full overflow-y-hidden relative">
+              <div className="bg-black flex items-end justify-center absolute inset-0  ">
+                <Footer isActive={activeSlide} />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

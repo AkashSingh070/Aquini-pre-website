@@ -1,0 +1,377 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ExtraBoldItalic.woff2") format("woff2"),
+    url("Montserrat-ExtraBoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ExtraBold.woff2") format("woff2"),
+    url("Montserrat-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-BoldItalic.woff2") format("woff2"),
+    url("Montserrat-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ExtraLightItalic.woff2") format("woff2"),
+    url("Montserrat-ExtraLightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ExtraLight.woff2") format("woff2"),
+    url("Montserrat-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Bold.woff2") format("woff2"),
+    url("Montserrat-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-LightItalic.woff2") format("woff2"),
+    url("Montserrat-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-MediumItalic.woff2") format("woff2"),
+    url("Montserrat-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Light.woff2") format("woff2"),
+    url("Montserrat-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Medium.woff2") format("woff2"),
+    url("Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Regular.woff2") format("woff2"),
+    url("Montserrat-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Italic.woff2") format("woff2"),
+    url("Montserrat-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-SemiBoldItalic.woff2") format("woff2"),
+    url("Montserrat-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Thin.woff2") format("woff2"),
+    url("Montserrat-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gabriela Stencil";
+  src: url("GabrielaStencil-Bold.woff2") format("woff2"),
+    url("GabrielaStencil-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gabriela Stencil";
+  src: url("GabrielaStencil-Light.woff2") format("woff2"),
+    url("GabrielaStencil-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-SemiBold.woff2") format("woff2"),
+    url("Montserrat-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ThinItalic.woff2") format("woff2"),
+    url("Montserrat-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Black.woff2") format("woff2"),
+    url("Montserrat-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gabriela Stencil";
+  src: url("GabrielaStencil-Regular.woff2") format("woff2"),
+    url("GabrielaStencil-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-BlackItalic.woff2") format("woff2"),
+    url("Montserrat-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate";
+  src: url("Copperplate-Bold.eot");
+  src: url("Copperplate-Bold.eot?#iefix") format("embedded-opentype"),
+    url("Copperplate-Bold.woff2") format("woff2"),
+    url("Copperplate-Bold.woff") format("woff"),
+    url("Copperplate-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cooper";
+  src: url("CooperBlack.eot");
+  src: url("CooperBlack.eot?#iefix") format("embedded-opentype"),
+    url("CooperBlack.woff2") format("woff2"),
+    url("CooperBlack.woff") format("woff"),
+    url("CooperBlack.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate Gothic";
+  src: url("CopperplateGothic-Bold.eot");
+  src: url("CopperplateGothic-Bold.eot?#iefix") format("embedded-opentype"),
+    url("CopperplateGothic-Bold.woff2") format("woff2"),
+    url("CopperplateGothic-Bold.woff") format("woff"),
+    url("CopperplateGothic-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate.eot");
+  src: url("OPTICopperplate.eot?#iefix") format("embedded-opentype"),
+    url("OPTICopperplate.woff2") format("woff2"),
+    url("OPTICopperplate.woff") format("woff"),
+    url("OPTICopperplate.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate-Light.eot");
+  src: url("OPTICopperplate-Light.eot?#iefix") format("embedded-opentype"),
+    url("OPTICopperplate-Light.woff2") format("woff2"),
+    url("OPTICopperplate-Light.woff") format("woff"),
+    url("OPTICopperplate-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate-Heavy.eot");
+  src: url("OPTICopperplate-Heavy.eot?#iefix") format("embedded-opentype"),
+    url("OPTICopperplate-Heavy.woff2") format("woff2"),
+    url("OPTICopperplate-Heavy.woff") format("woff"),
+    url("OPTICopperplate-Heavy.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate-Light.woff2") format("woff2"),
+    url("OPTICopperplate-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate CC";
+  src: url("CopperplateCC.woff2") format("woff2"),
+    url("CopperplateCC.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate.woff2") format("woff2"),
+    url("OPTICopperplate.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OPTICopperplate";
+  src: url("OPTICopperplate-Heavy.woff2") format("woff2"),
+    url("OPTICopperplate-Heavy.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond Pro";
+  src: url("AGaramondPro-Regular.woff2") format("woff2"),
+    url("AGaramondPro-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond Pro";
+  src: url("AGaramondPro-Italic.woff2") format("woff2"),
+    url("AGaramondPro-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond Pro";
+  src: url("AGaramondPro-Bold.woff2") format("woff2"),
+    url("AGaramondPro-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond Pro";
+  src: url("AGaramondPro-BoldItalic.woff2") format("woff2"),
+    url("AGaramondPro-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
