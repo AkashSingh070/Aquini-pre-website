@@ -173,7 +173,7 @@ const Index = ({ isActive }) => {
             </p>
             <p className="!text-neutral-300  hover:text-white text-xs ">
               <a
-                href="https://akashsingh.in/"
+                href="https://triverseadvertising.com/"
                 className=" text-xs "
                 rel="nofollow"
                 target="_blank"
