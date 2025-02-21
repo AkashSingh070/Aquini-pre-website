@@ -88,8 +88,8 @@ const AnimatedSections = () => {
       { yPercent: (i) => (i ? -100 : 100) },
       {
         yPercent: 0,
-        duration: 1.25,
-        ease: "power1.inOut",
+        duration: 1.7, // Increase duration for a slower transition
+        ease: "expo.inOut",
         onComplete: () => setIsLoaded(true),
       }
     );
