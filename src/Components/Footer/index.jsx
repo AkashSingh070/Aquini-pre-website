@@ -61,7 +61,7 @@ const Index = () => {
 
   const ContactIcon = ({ icon: Icon, children }) => (
     <div className="flex items-center gap-2 text-neutral-400">
-      <Icon className="w-4 h-4 text-primary" />
+      <Icon className="!w-4 !h-4 text-primary" />
       {children}
     </div>
   );
@@ -120,7 +120,7 @@ const Index = () => {
             <div className="w-full md:w-1/4 mb-8 md:mb-0">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="text-primary font-semibold text-base mb-4">
-                  <ContactIcon icon={FaMapMarkerAlt}>Address</ContactIcon>
+                  <ContactIcon  icon={FaMapMarkerAlt}>Address</ContactIcon>
                 </li>
                 <li className="text-neutral-400 text-sm leading-6 whitespace-pre-line">
                   {footerData.contact.address}

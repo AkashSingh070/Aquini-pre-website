@@ -25,10 +25,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full  z-999">
       <div className={`w-full  transition-all duration-300 z-999 relative `}>
-        <div className="flex items-center justify-between w-[85%]  mx-auto  pointer-events-auto">
+        <div className="flex items-center justify-between w-[94%]  mx-auto  pointer-events-auto">
           {/* Logo */}
           <div
-            className="relative w-[14.58%] h-[100%] cursor-pointer"
+            className="relative w-[13%] h-[100%] cursor-pointer"
             data-aos="fade-in"
             data-aos-delay="500"
             data-aos-duration="600"
@@ -36,11 +36,12 @@ export default function Header() {
           >
             <Logo />
           </div>
-
-          {/* Get In Touch Text */}
-          <RoundedButton backgroundColor="#a5854e">
-            <p>Download</p>
-          </RoundedButton>
+          <div className="mx-3">
+            {/* Get In Touch Text */}
+            <RoundedButton backgroundColor="#a5854e">
+              <p>Download</p>
+            </RoundedButton>
+          </div>
         </div>
       </div>
     </header>

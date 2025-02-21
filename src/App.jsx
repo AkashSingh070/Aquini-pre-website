@@ -23,7 +23,6 @@ const AnimatedSections = () => {
     const innerWrappers = gsap.utils.toArray(
       container.querySelectorAll(".inner")
     );
-    // Select inner-containers (for background image tween)
     const innerContainers = gsap.utils.toArray(
       container.querySelectorAll(".inner-container")
     );
@@ -34,7 +33,6 @@ const AnimatedSections = () => {
     // Set initial positions for outer and inner wrappers.
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
-    // Ensure the inner-container has a default background position.
     innerContainers.forEach((el) =>
       gsap.set(el, { backgroundPosition: "center center" })
     );
@@ -47,13 +45,8 @@ const AnimatedSections = () => {
       { yPercent: 0, duration: 1.25, ease: "power1.inOut" }
     );
 
-    // Function to navigate to a given section.
     function gotoSection(index, direction) {
-      // Prevent transition if index is out of bounds.
-      if (index < 0 || index >= sections.length) {
-        console.log("Boundary reached, index:", index);
-        return;
-      }
+      if (index < 0 || index >= sections.length) return;
       animating = true;
       const dFactor = direction === -1 ? -1 : 1;
       const tl = gsap.timeline({
@@ -61,22 +54,24 @@ const AnimatedSections = () => {
         onComplete: () => (animating = false),
       });
 
-      // Fade out the previous section.
+      // Fade out previous section
       gsap.set(sections[currentIndex], { zIndex: 0 });
       tl.to(images[currentIndex], { yPercent: 0 }).set(sections[currentIndex], {
         autoAlpha: 0,
       });
 
-      // Prepare and animate the new section.
+      // Prepare new section
       gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
       tl.fromTo(
         [outerWrappers[index], innerWrappers[index]],
         { yPercent: (i) => (i ? -100 * dFactor : 100 * dFactor) },
         { yPercent: 0 },
         0
-      )
-        // Animate the inner-container's background position for a parallax effect.
-        .fromTo(
+      );
+
+      // Only animate inner-container for first 3 slides
+      if (index < 3) {
+        tl.fromTo(
           innerContainers[index],
           {
             backgroundPosition:
@@ -84,24 +79,21 @@ const AnimatedSections = () => {
           },
           { backgroundPosition: "center center" },
           0
-        )
-        .fromTo(images[index], { yPercent: 0 }, { yPercent: 0 }, 0);
+        );
+      }
 
       currentIndex = index;
     }
 
-    // Create a GSAP Observer with corrected scroll direction.
     Observer.create({
       type: "wheel,touch,pointer",
       wheelSpeed: 1,
       onDown: () => {
-        // Scroll down: move to the next slide.
         if (!animating && currentIndex < sections.length - 1) {
           gotoSection(currentIndex + 1, 1);
         }
       },
       onUp: () => {
-        // Scroll up: move to the previous slide.
         if (!animating && currentIndex > 0) {
           gotoSection(currentIndex - 1, -1);
         }
@@ -113,15 +105,13 @@ const AnimatedSections = () => {
     return () => Observer.getAll().forEach((obs) => obs.kill());
   }, []);
 
-  // Only 3 main sections.
+  // Updated sections data with footer as 4th slide
   const sectionsData = [
-    { id: "first", heading: "Scroll down" },
-    { id: "second", heading: "Animated with GSAP" },
-    { id: "third", heading: "GreenSock" },
+    { id: "first", heading: "Scroll down", bg: img01 },
+    { id: "second", heading: "Animated with GSAP", bg: img02 },
+    { id: "third", heading: "GreenSock", bg: img03 },
+    { id: "footer", heading: "Footer Section" },
   ];
-
-  // 3 background images corresponding to each section.
-  const bgImages = [img03, img02, img01];
 
   return (
     <>
@@ -133,28 +123,28 @@ const AnimatedSections = () => {
         {sectionsData.map((section, index) => (
           <section
             key={section.id}
-            className="fixed top-0 h-full w-full invisible "
+            className="fixed top-0 h-full w-full invisible"
           >
             <div className="outer w-full h-full overflow-y-hidden">
               <div className="inner w-full h-full overflow-y-hidden relative">
-                <div
-                  className="bg flex items-center justify-center flex-col absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${
-                      bgImages[index % bgImages.length]
-                    })`,
-                  }}
-                >
-                  <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
+                {index === 3 ? (
+                  // Footer Section
+                  <div className="bg-black flex items-center justify-center absolute inset-0">
+                    <Footer />
+                  </div>
+                ) : (
+                  // Regular Slides
                   <div
-                    className="inner-container mx-auto h-auto w-[85vw] aspect-video z-10 shadow-2xl bg-cover mt-[100px]"
-                    style={{
-                      backgroundImage: `url(${
-                        bgImages[index % bgImages.length]
-                      })`,
-                    }}
-                  ></div>
-                </div>
+                    className="bg flex  justify-center items-end flex-col absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${section.bg})` }}
+                  >
+                    <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
+                    <div
+                      className="inner-container mx-auto h-auto w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                      style={{ backgroundImage: `url(${section.bg})` }}
+                    ></div>
+                  </div>
+                )}
               </div>
             </div>
           </section>
