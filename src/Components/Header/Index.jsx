@@ -1,5 +1,5 @@
 import { use } from "framer-motion/m";
-import Logo from "../../assets/Svg/logo/Index";
+import Logo from "../../assets/Svg/Logo.jsx";
 import RoundedButton from "../RoundedButton/Index";
 import Aos from "aos";
 import { useEffect } from "react";
