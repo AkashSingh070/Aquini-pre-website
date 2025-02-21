@@ -201,7 +201,15 @@ const AnimatedSections = () => {
 
   return (
     <>
-      <Header isLoaded={isLoaded} />
+      <Header
+        isLoaded={isLoaded}
+        onDownload={() => {
+          if (activeSlide !== 3) gotoSectionRef.current(3, activeSlide);
+        }}
+        onLogo={() => {
+          if (activeSlide !== 0) gotoSectionRef.current(0, activeSlide);
+        }}
+      />
       <div
         ref={containerRef}
         className="min-h-screen w-full relative min-w-screen"
@@ -237,7 +245,7 @@ const AnimatedSections = () => {
                         activeSlide === 0 && isLoaded ? "active" : ""
                       }`}
                     >
-                      <h1>
+                      <h1 className=" ">
                         AN EXCLUSIVE EXPERIENCE <br />
                         IS TAKING SHAPE
                       </h1>
@@ -248,7 +256,6 @@ const AnimatedSections = () => {
               {/* Use the simple onClick handler */}
               <div
                 onClick={handleNextSlide}
-                ref={(el) => (scrollDownElementsRef.current[0] = el)}
                 className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
               >
                 <span className="h-20 w-[1px] bg-white flex"></span>
