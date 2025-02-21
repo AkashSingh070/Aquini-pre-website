@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-import { motion } from "framer-motion";
 import Header from "./Components/Header/Index";
+import Footer from "./Components/Footer/Index";
 import img01 from "./assets/01.webp";
 import img02 from "./assets/02.webp";
 import img03 from "./assets/03.webp";
@@ -23,42 +23,51 @@ const AnimatedSections = () => {
     const innerWrappers = gsap.utils.toArray(
       container.querySelectorAll(".inner")
     );
-    // Gather innerContainers but DO NOT set yPercent for them now,
-    // so they remain fixed.
+    // Select inner-containers (for background image tween)
     const innerContainers = gsap.utils.toArray(
       container.querySelectorAll(".inner-container")
     );
-    // Removed: gsap.set(innerContainers, { yPercent: 100 });
 
-    let currentIndex = -1;
-    const wrap = gsap.utils.wrap(0, sections.length);
+    let currentIndex = 0;
     let animating = false;
 
-    // Set outer and inner wrappers as before.
+    // Set initial positions for outer and inner wrappers.
     gsap.set(outerWrappers, { yPercent: 100 });
     gsap.set(innerWrappers, { yPercent: -100 });
-    // The inner-container will now remain fixed (no yPercent set).
+    // Ensure the inner-container has a default background position.
+    innerContainers.forEach((el) =>
+      gsap.set(el, { backgroundPosition: "center center" })
+    );
 
+    // Immediately display the first section.
+    gsap.set(sections[currentIndex], { autoAlpha: 1, zIndex: 1 });
+    gsap.fromTo(
+      [outerWrappers[currentIndex], innerWrappers[currentIndex]],
+      { yPercent: (i) => (i ? -100 : 100) },
+      { yPercent: 0, duration: 1.25, ease: "power1.inOut" }
+    );
+
+    // Function to navigate to a given section.
     function gotoSection(index, direction) {
-      index = wrap(index);
+      // Prevent transition if index is out of bounds.
+      if (index < 0 || index >= sections.length) {
+        console.log("Boundary reached, index:", index);
+        return;
+      }
       animating = true;
-      const fromTop = direction === -1;
-      const dFactor = fromTop ? -1 : 1;
+      const dFactor = direction === -1 ? -1 : 1;
       const tl = gsap.timeline({
         defaults: { duration: 1.25, ease: "power1.inOut" },
         onComplete: () => (animating = false),
       });
 
-      if (currentIndex >= 0) {
-        // Fade out the previous section and add a slight parallax on its image.
-        gsap.set(sections[currentIndex], { zIndex: 0 });
-        tl.to(images[currentIndex], { yPercent: -0 * dFactor }).set(
-          sections[currentIndex],
-          { autoAlpha: 0 }
-        );
-      }
+      // Fade out the previous section.
+      gsap.set(sections[currentIndex], { zIndex: 0 });
+      tl.to(images[currentIndex], { yPercent: 0 }).set(sections[currentIndex], {
+        autoAlpha: 0,
+      });
 
-      // Prepare the new section for display.
+      // Prepare and animate the new section.
       gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
       tl.fromTo(
         [outerWrappers[index], innerWrappers[index]],
@@ -66,45 +75,53 @@ const AnimatedSections = () => {
         { yPercent: 0 },
         0
       )
-        // Removed inner-container parallax tween so it remains fixed:
-        // .fromTo(
-        //   innerContainers[index],
-        //   { yPercent: 100 * dFactor },
-        //   { yPercent: 0 },
-        //   0
-        // )
-        .fromTo(images[index], { yPercent: 0 * dFactor }, { yPercent: 0 }, 0);
+        // Animate the inner-container's background position for a parallax effect.
+        .fromTo(
+          innerContainers[index],
+          {
+            backgroundPosition:
+              direction === 1 ? "center top" : "center bottom",
+          },
+          { backgroundPosition: "center center" },
+          0
+        )
+        .fromTo(images[index], { yPercent: 0 }, { yPercent: 0 }, 0);
 
       currentIndex = index;
     }
 
-    // Set up the Observer for scroll, touch, and pointer events.
+    // Create a GSAP Observer with corrected scroll direction.
     Observer.create({
       type: "wheel,touch,pointer",
-      wheelSpeed: -1,
-      onDown: () => !animating && gotoSection(currentIndex - 1, -1),
-      onUp: () => !animating && gotoSection(currentIndex + 1, 1),
+      wheelSpeed: 1,
+      onDown: () => {
+        // Scroll down: move to the next slide.
+        if (!animating && currentIndex < sections.length - 1) {
+          gotoSection(currentIndex + 1, 1);
+        }
+      },
+      onUp: () => {
+        // Scroll up: move to the previous slide.
+        if (!animating && currentIndex > 0) {
+          gotoSection(currentIndex - 1, -1);
+        }
+      },
       tolerance: 10,
       preventDefault: true,
     });
 
-    // Start on the first section.
-    gotoSection(0, 1);
-
     return () => Observer.getAll().forEach((obs) => obs.kill());
   }, []);
 
-  // Section data with headings and background colors (in place of images)
+  // Only 3 main sections.
   const sectionsData = [
     { id: "first", heading: "Scroll down" },
     { id: "second", heading: "Animated with GSAP" },
     { id: "third", heading: "GreenSock" },
-    { id: "fourth", heading: "Animation platform" },
-    { id: "fifth", heading: "Keep scrolling" },
   ];
 
-  // Colors for the outer container.
-  const bgImages = [img01, img02, img03];
+  // 3 background images corresponding to each section.
+  const bgImages = [img03, img02, img01];
 
   return (
     <>
@@ -113,36 +130,30 @@ const AnimatedSections = () => {
         ref={containerRef}
         className="bg-black text-white font-serif uppercase min-h-screen"
       >
-        {/* Render sections */}
         {sectionsData.map((section, index) => (
           <section
             key={section.id}
-            className="fixed top-0 h-full w-full invisible"
+            className="fixed top-0 h-full w-full invisible "
           >
             <div className="outer w-full h-full overflow-y-hidden">
-              <div className="inner w-full h-full overflow-y-hidden">
+              <div className="inner w-full h-full overflow-y-hidden relative">
                 <div
                   className="bg flex items-center justify-center flex-col absolute inset-0 bg-cover bg-center"
-                  // Outer background color remains as defined here.
                   style={{
                     backgroundImage: `url(${
                       bgImages[index % bgImages.length]
                     })`,
                   }}
                 >
+                  <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
                   <div
-                    className="inner-container mx-auto h-auto w-2/3 z-10"
-                    // The inner-container background color uses the reversed order
-                    // to create the reverse color effect relative to the outer.
+                    className="inner-container mx-auto h-auto w-[85vw] aspect-video z-10 shadow-2xl bg-cover mt-[100px]"
                     style={{
                       backgroundImage: `url(${
                         bgImages[index % bgImages.length]
                       })`,
                     }}
                   ></div>
-                  <h2 className="section-heading z-20 text-center text-[clamp(1rem,5vw,5rem)] font-normal tracking-[0.5em] w-[90vw] max-w-[1200px]">
-                    {section.heading}
-                  </h2>
                 </div>
               </div>
             </div>
