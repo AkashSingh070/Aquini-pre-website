@@ -28,6 +28,7 @@ const AnimatedSections = () => {
     const innerContainers = gsap.utils.toArray(
       container.querySelectorAll(".inner-container")
     );
+    const scrollDownElements = container.querySelectorAll(".scroll-down");
 
     let currentIndex = 0;
     let animating = false;
@@ -47,6 +48,27 @@ const AnimatedSections = () => {
       { yPercent: 0, duration: 1.25, ease: "power1.inOut" }
     );
 
+    // Function to scroll to the scroll indicator
+    const scrollToScrollIndicator = (index) => {
+      if (index < sections.length - 1) {
+        // Don't scroll on last section
+        const scrollElement = scrollDownElements[index];
+        if (scrollElement) {
+          // Wait for slide transition to complete, then scroll
+          setTimeout(() => {
+            const rect = scrollElement.getBoundingClientRect();
+            const scrollDestination = rect.top + window.scrollY - 20; // Adjust for better visibility
+
+            gsap.to(window, {
+              scrollTo: scrollDestination,
+              duration: 1,
+              ease: "power2.inOut",
+            });
+          }, 1300); // Slightly after the slide transition completes
+        }
+      }
+    };
+
     function gotoSection(index, direction) {
       if (index < 0 || index >= sections.length) return;
       animating = true;
@@ -55,7 +77,10 @@ const AnimatedSections = () => {
       const dFactor = direction === -1 ? -1 : 1;
       const tl = gsap.timeline({
         defaults: { duration: 1.25, ease: "power1.inOut" },
-        onComplete: () => (animating = false),
+        onComplete: () => {
+          animating = false;
+          scrollToScrollIndicator(index);
+        },
       });
 
       if (titles[currentIndex]) titles[currentIndex].classList.remove("active");
@@ -87,6 +112,19 @@ const AnimatedSections = () => {
 
       currentIndex = index;
     }
+
+    // Click handler for scroll-down elements
+    const handleScrollDownClick = (event) => {
+      if (!animating && currentIndex < sections.length - 1) {
+        gotoSection(currentIndex + 1, 1);
+      }
+    };
+
+    // Add click event listeners to all scroll-down elements
+    scrollDownElements.forEach((el) => {
+      el.style.cursor = "pointer"; // Make it clear it's clickable
+      el.addEventListener("click", handleScrollDownClick);
+    });
 
     Observer.create({
       target: container,
@@ -123,6 +161,10 @@ const AnimatedSections = () => {
     return () => {
       Observer.getAll().forEach((obs) => obs.kill());
       window.removeEventListener("keydown", handleKeyDown);
+      // Remove click event listeners to prevent memory leaks
+      scrollDownElements.forEach((el) => {
+        el.removeEventListener("click", handleScrollDownClick);
+      });
     };
   }, []);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -151,7 +193,7 @@ const AnimatedSections = () => {
                 className="flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
                 style={{ backgroundImage: `url(${BGimg03})` }}
               >
-                <div class="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
+                <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
                 <div
                   className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
                   style={{ backgroundImage: `url(${img03})` }}
@@ -166,7 +208,7 @@ const AnimatedSections = () => {
                   </div>
                 </div>
               </div>
-              <div class="animate-bounce scroll-down h-20 ease-in duration-500">
+              <div className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer">
                 <span className="h-20 w-[1px] bg-white flex"></span>
               </div>
             </div>
@@ -180,7 +222,7 @@ const AnimatedSections = () => {
                 className="bg flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
                 style={{ backgroundImage: `url(${img02})` }}
               >
-                <div class="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
+                <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
                 <div
                   className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
                   style={{ backgroundImage: `url(${img02})` }}
@@ -198,9 +240,9 @@ const AnimatedSections = () => {
                         Aquini brings you products that meet International
                         standards of excellence, offering you both style and
                         durability for your private sanctuary. Conceptualized in
-                        world renowned design studios, Aquini’s latest
+                        world renowned design studios, Aquini's latest
                         collection reflects the perfect balance of innovation
-                        and timeless elegance. Whether you’re drawn to graceful
+                        and timeless elegance. Whether you're drawn to graceful
                         curves or sleek, futuristic lines, our diverse selection
                         is tailored to match your indulgence in the ultimate
                         luxury and design with Aquini.
@@ -209,7 +251,7 @@ const AnimatedSections = () => {
                   </div>
                 </div>
               </div>
-              <div class="animate-bounce scroll-down h-20  ease-in duration-500">
+              <div className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer">
                 <span className="h-20 w-[1px] bg-white flex"></span>
               </div>
             </div>
@@ -223,7 +265,7 @@ const AnimatedSections = () => {
                 className="bg flex justify-center items-end flex-col bg-cover bg-no-repeat  relative overflow-hidden"
                 style={{ backgroundImage: `url(${img01})` }}
               >
-                <div class="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
                 <div
                   className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
                   style={{ backgroundImage: `url(${img01})` }}
@@ -239,7 +281,7 @@ const AnimatedSections = () => {
                   </div>
                 </div>
               </div>
-              <div class="animate-bounce scroll-down h-20 ease-in duration-500">
+              <div className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer">
                 <span className="h-20 w-[1px] bg-white flex"></span>
               </div>
             </div>
