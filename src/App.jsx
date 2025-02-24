@@ -263,11 +263,11 @@ const AnimatedSections = () => {
         >
           <div
             ref={(el) => (outerWrappersRef.current[0] = el)}
-            className="outer w-full h-full overflow-y-hidden"
+            className="outer w-[100dvw] h-[100dvh] overflow-y-hidden"
           >
             <div
               ref={(el) => (innerWrappersRef.current[0] = el)}
-              className="inner w-screen h-screen overflow-y-hidden"
+              className="inner w-[100dvw] h-[100dvh] overflow-y-hidden"
             >
               <div
                 ref={(el) => (imagesRef.current[0] = el)}
@@ -321,15 +321,15 @@ const AnimatedSections = () => {
         >
           <div
             ref={(el) => (outerWrappersRef.current[1] = el)}
-            className="outer w-full h-full overflow-y-hidden"
+            className="outer w-[100dvw] h-[100dvh] overflow-y-hidden"
           >
             <div
               ref={(el) => (innerWrappersRef.current[1] = el)}
-              className="inner w-full h-full overflow-y-hidden relative"
+              className="inner w-[100dvw] h-[100dvh] overflow-y-hidden relative"
             >
               <div
                 ref={(el) => (imagesRef.current[1] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-[100dvh] w-[100dvw]"
                 style={{
                   backgroundImage: `url(${isSmallScreen ? mobileBg2 : img02})`,
                 }}
@@ -391,15 +391,15 @@ const AnimatedSections = () => {
         >
           <div
             ref={(el) => (outerWrappersRef.current[2] = el)}
-            className="outer w-full h-full overflow-y-hidden"
+            className="outer w-[100dvw] h-[100dvh] overflow-y-hidden"
           >
             <div
               ref={(el) => (innerWrappersRef.current[2] = el)}
-              className="inner w-full h-full overflow-y-hidden relative"
+              className="inner w-[100dvw] h-[100dvh] overflow-y-hidden relative"
             >
               <div
                 ref={(el) => (imagesRef.current[2] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-[100dvh] w-[100dvw]"
                 style={{
                   backgroundImage: `url(${isSmallScreen ? mobileBg3 : img01})`,
                 }}
@@ -447,11 +447,11 @@ const AnimatedSections = () => {
         >
           <div
             ref={(el) => (outerWrappersRef.current[3] = el)}
-            className="outer w-full h-full overflow-y-hidden"
+            className="outer w-[100dvw] h-[100dvh] overflow-y-hidden"
           >
             <div
               ref={(el) => (innerWrappersRef.current[3] = el)}
-              className="inner w-full h-full overflow-y-hidden relative"
+              className="inner w-[100dvw] h-[100dvh] overflow-y-hidden relative"
             >
               <div className="bg-black flex items-end justify-center absolute inset-0">
                 <Footer isActive={activeSlide} />
