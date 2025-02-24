@@ -1,6 +1,4 @@
-import React, { useRef } from "react";
-import { useScroll, motion, useTransform } from "framer-motion";
-// import { Link } from "react-router-dom";
+import React from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,7 +9,6 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-
 import { LuDownload } from "react-icons/lu";
 
 const footerData = {
@@ -54,7 +51,7 @@ const Index = ({ isActive }) => {
   const currentYear = new Date().getFullYear();
 
   const ContactIcon = ({ icon: Icon, children }) => (
-    <div className="flex items-center gap-2 primary-color fill-primary">
+    <div className="flex items-center gap-2 primary-color fill-primary  mx-auto md:mx-0 justify-center md:justify-start">
       <Icon className="!w-8 !h-8 primary-color fill-primary" />
       {children}
     </div>
@@ -68,35 +65,38 @@ const Index = ({ isActive }) => {
             isActive === 3 ? "opacity-100" : ""
           }`}
         >
+          {/* Download Section */}
           <div className="flex justify-center items-center flex-col w-full">
-            <div className=" title  titleFooter w-1/2 text-[18px] tracking-[1.5px] flex  items-center justify-center mb-10  ">
+            <div
+              // Changed w-1/2 to w-full on mobile, remains w-1/2 on md and above
+              className="title titleFooter w-full md:w-1/2 text-[18px] tracking-[1.5px]  items-center justify-center mb-10 hidden md:flex"
+            >
               <h2 className="!text-center text-wrap !opacity-100">
                 Stay Tuned for More
                 <br /> Dive into the Aquini Consumer Handbook
               </h2>
             </div>
-            <span className="uppercase primary-color Heading_font  text-[16px] tracking-[1.5px] mx-auto inline-block  mb-10">
+            <span className="uppercase primary-color Heading_font text-[16px] tracking-[1.5px] mx-auto inline-block mb-10">
               Download Now
             </span>
-            <i className="primary-color fill-primary text-[40px] ">
+            <i className="primary-color fill-primary text-[40px]">
               <LuDownload />
             </i>
           </div>
-          {/* Top Footer Section */}
-          <div className="flex flex-wrap justify-between border-y border-white/10 py-12 md:py-24 my-10">
-            {/* Logo */}
 
+          {/* Top Footer Section */}
+          <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 md:py-24 md:my-10">
             {/* Contact Info */}
-            <div className="w-full md:w-1/6 mb-8 md:mb-0">
+            <div className="w-full md:w-1/6 mb-8 md:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
-                  <ContactIcon icon={FaPhoneAlt}></ContactIcon>
+                  <ContactIcon icon={FaPhoneAlt} />
                 </li>
                 {footerData.contact.phones.map((phone, index) => (
                   <li key={index}>
                     <a
                       href={`tel:${phone}`}
-                      className="text-neutral-300  hover:text-white tracking-[1.5px]  "
+                      className="text-neutral-300 hover:text-white tracking-[1.5px]"
                     >
                       {phone}
                     </a>
@@ -106,13 +106,13 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Address */}
-            <div className="w-full md:w-1/4 mb-8 md:mb-0">
+            <div className="w-full md:w-1/4 mb-8 md:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
-                <li className="primary-color font-semibold text-xl mb-4">
-                  <ContactIcon icon={FaMapMarkerAlt}></ContactIcon>
+                <li className="primary-color font-semibold text-xl mb-4 mx-auto ">
+                  <ContactIcon icon={FaMapMarkerAlt} />
                 </li>
                 <li
-                  className="text-neutral-300  hover:text-white  whitespace-pre-line tracking-[1.5px] leading-[1.5]"
+                  className="text-neutral-300 hover:text-white whitespace-pre-line tracking-[1.5px] leading-[1.5]"
                   dangerouslySetInnerHTML={{
                     __html: footerData.contact.address,
                   }}
@@ -121,16 +121,16 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Email */}
-            <div className="w-full md:w-1/6 mb-8 md:mb-0">
+            <div className="w-full md:w-1/6 mb-8 md:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
-                  <ContactIcon icon={FaEnvelope}></ContactIcon>
+                  <ContactIcon icon={FaEnvelope} />
                 </li>
                 {footerData.contact.email.map((email, index) => (
                   <li key={index}>
                     <a
                       href={`mailto:${email}`}
-                      className="text-neutral-300 hover:text-white  lowercase tracking-[1.5px]"
+                      className="text-neutral-300 hover:text-white lowercase tracking-[1.5px]"
                     >
                       {email}
                     </a>
@@ -140,12 +140,12 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Social Media */}
-            <div className="w-full md:w-1/6">
+            <div className="w-full md:w-1/6 text-center md:text-left">
               <ul>
                 <li className="primary-color font-semibold text-xl mb-4">
                   Follow on
                 </li>
-                <div className="flex gap-4">
+                <div className="flex gap-4 justify-center md:justify-start">
                   {footerData.social.map((item, index) => {
                     const Icon = item.icon;
                     return (
@@ -155,7 +155,7 @@ const Index = ({ isActive }) => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={item.label}
-                        className=" hover:text-white transition-colors text-neutral-300"
+                        className="hover:text-white transition-colors text-neutral-300"
                       >
                         <Icon size={20} />
                       </a>
@@ -167,14 +167,14 @@ const Index = ({ isActive }) => {
           </div>
 
           {/* Copyright Section */}
-          <div className="flex flex-wrap justify-between items-center py-6 mx-5 ">
-            <p className="!text-neutral-300 text-xs ">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center md:py-6 py-3 mx-auto text-center md:text-left">
+            <p className="!text-neutral-300 text-xs">
               © {currentYear} Plumber | All rights reserved.
             </p>
-            <p className="!text-neutral-300  hover:text-white text-xs ">
+            <p className="!text-neutral-300 hover:text-white text-xs">
               <a
                 href="https://triverseadvertising.com/"
-                className=" text-xs "
+                className="text-xs"
                 rel="nofollow"
                 target="_blank"
               >

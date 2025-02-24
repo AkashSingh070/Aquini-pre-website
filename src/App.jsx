@@ -226,22 +226,22 @@ const AnimatedSections = () => {
           >
             <div
               ref={(el) => (innerWrappersRef.current[0] = el)}
-              className="inner w-full h-full overflow-y-hidden"
+              className="inner w-screen h-screen overflow-y-hidden"
             >
               <div
                 ref={(el) => (imagesRef.current[0] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
                 style={{ backgroundImage: `url(${BGimg03})` }}
               >
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[0] = el)}
-                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
                   style={{ backgroundImage: `url(${img03})` }}
                 >
                   <div className="relative z-10 text-center w-full h-full">
                     <div
-                      className={`title title01 ${
+                      className={`title title01  w-[250px] md:w-auto ${
                         activeSlide === 0 && isLoaded ? "active" : ""
                       }`}
                     >
@@ -280,26 +280,26 @@ const AnimatedSections = () => {
             >
               <div
                 ref={(el) => (imagesRef.current[1] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
                 style={{ backgroundImage: `url(${img02})` }}
               >
                 <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[1] = el)}
-                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
                   style={{ backgroundImage: `url(${img02})` }}
                 >
-                  <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
+                  <div className="relative z-10 text-center md:w-full w-11/12 mx-auto h-full flex flex-col md:flex-row justify-end ">
                     <div
-                      className={`title w-1/2 text-[30px] tracking-[3px] flex items-center justify-center mt-[25%] ml-10 ${
+                      className={`title md:w-1/2 md:text-[30px] text-[19px]  w-full tracking-[3px] flex items-center justify-center md:mt-[25%] md:ml-10 mb-5 md:mb-0 ${
                         activeSlide === 1 ? "active" : ""
                       }`}
                     >
                       <h2>DESIGN MEETS DESIRE.</h2>
                     </div>
-                    <div className="flex items-center justify-center w-1/2">
+                    <div className="flex items-center justify-center md:w-1/2 w-full mb-10 md:mb-0">
                       <p
-                        className={`uppercase tracking-[4px] leading-[1.8] pl-6 text-[19px] text-left mx-auto w-9/12 para_text ${
+                        className={`uppercase md:tracking-[4px] tracking-[1.9px] md:leading-[1.8]  leading-[1.6] md:pl-6 md:text-[19px] text-[14px] text-left mx-auto md:w-9/12 w-full  para_text   ${
                           activeSlide === 1 ? "active" : ""
                         }`}
                       >
@@ -344,13 +344,13 @@ const AnimatedSections = () => {
             >
               <div
                 ref={(el) => (imagesRef.current[2] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
                 style={{ backgroundImage: `url(${img01})` }}
               >
                 <div className="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[2] = el)}
-                  className="inner-container mx-auto h-[85dvh] w-[84vw] aspect-video z-10 shadow-2xl bg-cover mt-[150px]"
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
                   style={{ backgroundImage: `url(${img01})` }}
                 >
                   <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
