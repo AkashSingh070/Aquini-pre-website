@@ -29,7 +29,7 @@ const AnimatedSections = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 786);
-
+  const [delayedLoaded, setDelayedLoaded] = useState(false);
   useEffect(() => {
     // Handler to update state based on window width
     const handleResize = () => {
@@ -239,6 +239,14 @@ const AnimatedSections = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  useEffect(() => {
+    const loadTimer = setTimeout(() => {
+      if (isLoaded === true) {
+        setDelayedLoaded(true);
+      }
+    }, 1000);
+    return () => clearTimeout(loadTimer);
+  }, [isLoaded]);
 
   return (
     <>
@@ -290,11 +298,11 @@ const AnimatedSections = () => {
                 >
                   <div className="relative z-10 text-center w-full h-full">
                     <div
-                      className={`title title01  w-[230px] sm:w-[250px] md:w-auto ${
+                      className={`title title01 w-[230px] sm:w-[250px] md:w-auto ${
                         activeSlide === 0 && isLoaded ? "active" : ""
-                      }`}
+                      } ${delayedLoaded ? "loaded" : ""}`}
                     >
-                      <h1 className=" ">
+                      <h1 className={`${delayedLoaded ? "loaded" : ""}`}>
                         AN EXCLUSIVE EXPERIENCE <br />
                         IS TAKING SHAPE
                       </h1>
@@ -303,12 +311,14 @@ const AnimatedSections = () => {
                 </div>
               </div>
               {/* Use the simple onClick handler */}
-              <div
-                onClick={handleNextSlide}
-                className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
-              >
-                <span className="h-20 w-[1px] bg-white flex"></span>
-              </div>
+              {!isSmallScreen && (
+                <div
+                  onClick={handleNextSlide}
+                  className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
+                >
+                  <span className="h-20 w-[1px] bg-white flex"></span>
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -372,13 +382,15 @@ const AnimatedSections = () => {
                   </div>
                 </div>
               </div>
-              <div
-                onClick={handleNextSlide}
-                ref={(el) => (scrollDownElementsRef.current[1] = el)}
-                className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
-              >
-                <span className="h-20 w-[1px] bg-white flex"></span>
-              </div>
+              {!isSmallScreen && (
+                <div
+                  onClick={handleNextSlide}
+                  ref={(el) => (scrollDownElementsRef.current[1] = el)}
+                  className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
+                >
+                  <span className="h-20 w-[1px] bg-white flex"></span>
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -428,13 +440,15 @@ const AnimatedSections = () => {
                   </div>
                 </div>
               </div>
-              <div
-                onClick={handleNextSlide}
-                ref={(el) => (scrollDownElementsRef.current[2] = el)}
-                className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
-              >
-                <span className="h-20 w-[1px] bg-white flex"></span>
-              </div>
+              {!isSmallScreen && (
+                <div
+                  onClick={handleNextSlide}
+                  ref={(el) => (scrollDownElementsRef.current[2] = el)}
+                  className="animate-bounce scroll-down h-20 ease-in duration-500 cursor-pointer"
+                >
+                  <span className="h-20 w-[1px] bg-white flex"></span>
+                </div>
+              )}
             </div>
           </div>
         </section>

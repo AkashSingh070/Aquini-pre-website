@@ -58,7 +58,10 @@ svg {
   position: absolute;
   top: -15%;
   max-width: 0px;
-  transition: max-width 1s ease 1s, width 1s ease 1s;
+  transition: max-width 1s ease 0.2s, width 1s ease 0.2s;
+}
+.title01.loaded:before {
+ transition-delay: 1s !important; 
 }
 .title01.active:before {
   max-width: 110px;
@@ -94,6 +97,12 @@ svg {
   opacity: 1;
 }
 
+.title.title01 h1 {
+  transition-delay: 0.2s !important;
+}
+.title.title01 h1.loaded {
+  transition-delay: 1s !important;
+}
 .title01 {
   top: inherit;
   right: 10vw;
@@ -187,8 +196,8 @@ section {
     .title01 {
       font-size: 15px;
       letter-spacing: 1.4px;
-      right: 5dvw;
-      bottom: 15dvh;
+      right: 3dvw;
+      bottom: 13dvh;
     }
 
 }
