@@ -271,7 +271,7 @@ const AnimatedSections = () => {
             >
               <div
                 ref={(el) => (imagesRef.current[0] = el)}
-                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
+                className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-[100dvh] w-[100dvw]"
                 style={{
                   backgroundImage: `url(${
                     isSmallScreen ? mobileBg1 : BGimg03
