@@ -181,6 +181,12 @@ section {
 @media all and (max-width: 640px) {
   :root {
     --main-font-size: 15px;}
+    .title01 {
+      font-size: 15px;
+      letter-spacing: 1.4px;
+      right: 5dvw;
+      bottom: 15dvh;
+    }
 
 }
 @media all and (max-width: 480px) {

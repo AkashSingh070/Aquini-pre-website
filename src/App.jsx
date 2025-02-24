@@ -108,8 +108,8 @@ const AnimatedSections = () => {
       { yPercent: (i) => (i ? -100 : 100) },
       {
         yPercent: 0,
-        duration: 1.7, // Increase duration for a slower transition
-        ease: "expo.inOut",
+        duration: 1.8, // Increase duration for a slower transition
+        ease: "power1.inOut",
         onComplete: () => setIsLoaded(true),
       }
     );
@@ -124,7 +124,7 @@ const AnimatedSections = () => {
             duration: 1,
             easing: (t) => t, // adjust easing if needed
           });
-        }, 1300);
+        }, 1500);
       }
     };
 
@@ -281,7 +281,7 @@ const AnimatedSections = () => {
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[0] = el)}
-                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] flex justify-center items-center m-auto h-[95dvh] w-[95vw]"
                   style={{
                     backgroundImage: `url(${
                       isSmallScreen ? mobilebanner1 : img03
