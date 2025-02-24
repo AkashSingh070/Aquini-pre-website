@@ -199,6 +199,18 @@ section {
       right: 3dvw;
       bottom: 13dvh;
     }
+    .title02 h2 {
+      font-size: 9px;
+      letter-spacing: 6px;
+    }
+    .title02 h2 span {
+      font-size: 30px;
+      line-height: 1.5;
+    }
+    .title02 h2 p {
+      font-size: 19px;
+      letter-spacing: 3.5px;
+    }
 
 }
 @media all and (max-width: 480px) {
