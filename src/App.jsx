@@ -191,21 +191,42 @@ const AnimatedSections = () => {
       }
     };
 
+    // Determine if device is mobile (for this fix only)
+    const isMobile = window.innerWidth < 786;
+
+    // Updated Observer for mobile: swap onDown and onUp callbacks only for mobile.
     Observer.create({
       target: containerRef.current,
       type: "wheel,touch,pointer",
       wheelSpeed: 1,
       onDown: () => {
-        if (
-          !animatingRef.current &&
-          currentSlideRef.current < sections.length - 1
-        ) {
-          gotoSection(currentSlideRef.current + 1, 1);
+        if (!animatingRef.current) {
+          if (isMobile) {
+            // For mobile: onDown goes to previous slide (instead of next)
+            if (currentSlideRef.current > 0) {
+              gotoSection(currentSlideRef.current - 1, -1);
+            }
+          } else {
+            // For desktop: onDown goes to next slide
+            if (currentSlideRef.current < sections.length - 1) {
+              gotoSection(currentSlideRef.current + 1, 1);
+            }
+          }
         }
       },
       onUp: () => {
-        if (!animatingRef.current && currentSlideRef.current > 0) {
-          gotoSection(currentSlideRef.current - 1, -1);
+        if (!animatingRef.current) {
+          if (isMobile) {
+            // For mobile: onUp goes to next slide (instead of previous)
+            if (currentSlideRef.current < sections.length - 1) {
+              gotoSection(currentSlideRef.current + 1, 1);
+            }
+          } else {
+            // For desktop: onUp goes to previous slide
+            if (currentSlideRef.current > 0) {
+              gotoSection(currentSlideRef.current - 1, -1);
+            }
+          }
         }
       },
       tolerance: 10,
