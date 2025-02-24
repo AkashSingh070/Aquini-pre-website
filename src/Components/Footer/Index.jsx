@@ -87,7 +87,7 @@ const Index = ({ isActive, isMobile }) => {
           {/* Top Footer Section */}
           <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 mb-3 sm:mb-7 xl:py-24 md:py-12 md:my-10">
             {/* Contact Info */}
-            <div className="w-full sm:w-1/2 xl:w-1/6  mb-8 xl:mb-0 text-center md:text-left">
+            <div className="w-1/2 xl:w-1/6  mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   <ContactIcon icon={FaPhoneAlt} />
@@ -106,7 +106,7 @@ const Index = ({ isActive, isMobile }) => {
             </div>
 
             {/* Address */}
-            <div className="w-full sm:w-1/2 xl:w-1/4 mb-8 xl:mb-0 text-center md:text-left">
+            <div className="w-1/2 xl:w-1/4 mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4 mx-auto ">
                   <ContactIcon icon={FaMapMarkerAlt} />
@@ -121,7 +121,7 @@ const Index = ({ isActive, isMobile }) => {
             </div>
 
             {/* Email */}
-            <div className="w-full sm:w-1/2 xl:w-1/6 mb-8 xl:mb-0 text-center md:text-left">
+            <div className="w-1/2 xl:w-1/6 mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   <ContactIcon icon={FaEnvelope} />
@@ -140,7 +140,7 @@ const Index = ({ isActive, isMobile }) => {
             </div>
 
             {/* Social Media */}
-            <div className="w-full sm:w-1/2 xl:w-1/6 sm:mb-8 mb-0 xl:mb-0 text-center md:text-left">
+            <div className="w-1/2 xl:w-1/6 mb-8  xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   Follow on

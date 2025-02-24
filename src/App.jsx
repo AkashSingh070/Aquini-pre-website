@@ -346,7 +346,7 @@ const AnimatedSections = () => {
                 >
                   <div className="relative z-10 text-center xl:w-full w-11/12 mx-auto h-full flex flex-col xl:flex-row justify-end ">
                     <div
-                      className={`title xl:w-1/2 xl:text-[1.8vw] lg:text-[40px] md:text-[30px] text-[4.5dvw]  w-full tracking-[3px] flex items-center xl:justify-center xl:mt-[25%] xl:ml-10 mb-5 xl:mb-0 ${
+                      className={`title xl:w-1/2 xl:text-[1.8vw] lg:text-[40px] md:text-[30px] sm:text-[4.5dvw] text-[4.1vw]  w-full tracking-[3px] flex items-center xl:justify-center xl:mt-[25%] xl:ml-10 sm:mb-5 mb-4 xl:mb-0 ${
                         activeSlide === 1 ? "active" : ""
                       }`}
                     >
