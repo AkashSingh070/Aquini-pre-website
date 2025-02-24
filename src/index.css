@@ -178,3 +178,8 @@ section {
   cursor: pointer;
   padding: 0 20px;
 }
+@media all and (max-width: 640px) {
+  :root {
+    --main-font-size: 15px;}
+
+}

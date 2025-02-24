@@ -47,7 +47,7 @@ const footerData = {
   ],
 };
 
-const Index = ({ isActive }) => {
+const Index = ({ isActive, isMobile }) => {
   const currentYear = new Date().getFullYear();
 
   const ContactIcon = ({ icon: Icon, children }) => (
@@ -69,7 +69,7 @@ const Index = ({ isActive }) => {
           <div className="flex justify-center items-center flex-col w-full">
             <div
               // Changed w-1/2 to w-full on mobile, remains w-1/2 on md and above
-              className="title titleFooter w-full md:w-1/2 text-[18px] tracking-[1.5px]  items-center justify-center mb-10 hidden md:flex"
+              className="title titleFooter w-full xl:w-1/2 text-[18px] tracking-[1.5px]  items-center justify-center mb-10 hidden md:flex"
             >
               <h2 className="!text-center text-wrap !opacity-100">
                 Stay Tuned for More
@@ -77,7 +77,7 @@ const Index = ({ isActive }) => {
               </h2>
             </div>
             <span className="uppercase primary-color Heading_font text-[16px] tracking-[1.5px] mx-auto inline-block mb-10">
-              Download Now
+              Download {isMobile ? "Brochure" : "Now"}
             </span>
             <i className="primary-color fill-primary text-[40px]">
               <LuDownload />
@@ -85,9 +85,9 @@ const Index = ({ isActive }) => {
           </div>
 
           {/* Top Footer Section */}
-          <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 md:py-24 md:my-10">
+          <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 xl:py-24 md:py-12 md:my-10">
             {/* Contact Info */}
-            <div className="w-full md:w-1/6 mb-8 md:mb-0 text-center md:text-left">
+            <div className="w-full sm:w-1/2 xl:w-1/6  mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   <ContactIcon icon={FaPhoneAlt} />
@@ -106,7 +106,7 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Address */}
-            <div className="w-full md:w-1/4 mb-8 md:mb-0 text-center md:text-left">
+            <div className="w-full sm:w-1/2 xl:w-1/4 mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4 mx-auto ">
                   <ContactIcon icon={FaMapMarkerAlt} />
@@ -121,7 +121,7 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Email */}
-            <div className="w-full md:w-1/6 mb-8 md:mb-0 text-center md:text-left">
+            <div className="w-full sm:w-1/2 xl:w-1/6 mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   <ContactIcon icon={FaEnvelope} />
@@ -140,8 +140,8 @@ const Index = ({ isActive }) => {
             </div>
 
             {/* Social Media */}
-            <div className="w-full md:w-1/6 text-center md:text-left">
-              <ul>
+            <div className="w-full sm:w-1/2 xl:w-1/6 sm:mb-8 mb-0 xl:mb-0 text-center md:text-left">
+              <ul className="space-y-3 mx-auto w-fit">
                 <li className="primary-color font-semibold text-xl mb-4">
                   Follow on
                 </li>

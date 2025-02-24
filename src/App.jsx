@@ -281,7 +281,7 @@ const AnimatedSections = () => {
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[0] = el)}
-                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
                   style={{
                     backgroundImage: `url(${
                       isSmallScreen ? mobilebanner1 : img03
@@ -290,7 +290,7 @@ const AnimatedSections = () => {
                 >
                   <div className="relative z-10 text-center w-full h-full">
                     <div
-                      className={`title title01  w-[250px] md:w-auto ${
+                      className={`title title01  w-[230px] sm:w-[250px] md:w-auto ${
                         activeSlide === 0 && isLoaded ? "active" : ""
                       }`}
                     >
@@ -337,24 +337,24 @@ const AnimatedSections = () => {
                 <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[1] = el)}
-                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
                   style={{
                     backgroundImage: `url(${
                       isSmallScreen ? mobilebanner2 : img02
                     })`,
                   }}
                 >
-                  <div className="relative z-10 text-center md:w-full w-11/12 mx-auto h-full flex flex-col md:flex-row justify-end ">
+                  <div className="relative z-10 text-center xl:w-full w-11/12 mx-auto h-full flex flex-col xl:flex-row justify-end ">
                     <div
-                      className={`title md:w-1/2 md:text-[30px] text-[19px]  w-full tracking-[3px] flex items-center justify-center md:mt-[25%] md:ml-10 mb-5 md:mb-0 ${
+                      className={`title xl:w-1/2 xl:text-[1.8vw] lg:text-[40px] md:text-[30px] text-[4.5dvw]  w-full tracking-[3px] flex items-center xl:justify-center xl:mt-[25%] xl:ml-10 mb-5 xl:mb-0 ${
                         activeSlide === 1 ? "active" : ""
                       }`}
                     >
                       <h2>DESIGN MEETS DESIRE.</h2>
                     </div>
-                    <div className="flex items-center justify-center md:w-1/2 w-full mb-10 md:mb-0">
+                    <div className="flex items-center justify-center xl:w-1/2 w-full mb-10 xl:mb-0">
                       <p
-                        className={`uppercase md:tracking-[4px] tracking-[1.9px] md:leading-[1.8]  leading-[1.6] md:pl-6 md:text-[19px] text-[14px] text-left mx-auto md:w-9/12 w-full  para_text   ${
+                        className={`uppercase xl:tracking-[4px] tracking-[1.9px] 2xl:leading-[1.8] xl:leading-[1.6]  leading-[1.6] 2xl:pl-6 2xl:text-[19px] xl:text-[17px] md:text-[15px] text-[14px] text-left mx-auto xl:w-9/12 w-full  para_text   ${
                           activeSlide === 1 ? "active" : ""
                         }`}
                       >
@@ -407,7 +407,7 @@ const AnimatedSections = () => {
                 <div className="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[2] = el)}
-                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
                   style={{
                     backgroundImage: `url(${
                       isSmallScreen ? mobilebanner3 : img01
@@ -454,7 +454,7 @@ const AnimatedSections = () => {
               className="inner w-[100dvw] h-[100dvh] overflow-y-hidden relative"
             >
               <div className="bg-black flex items-end justify-center absolute inset-0">
-                <Footer isActive={activeSlide} />
+                <Footer isActive={activeSlide} isMobile={isSmallScreen} />
               </div>
             </div>
           </div>
