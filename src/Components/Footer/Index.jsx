@@ -145,7 +145,7 @@ const Index = ({ isActive, isMobile }) => {
                 <li className="primary-color font-semibold text-xl mb-4">
                   Follow on
                 </li>
-                <div className="flex gap-4 justify-center md:justify-start">
+                <div className="flex gap-3 justify-center md:justify-start">
                   {footerData.social.map((item, index) => {
                     const Icon = item.icon;
                     return (
