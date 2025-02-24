@@ -181,6 +181,9 @@ section {
 @media all and (max-width: 640px) {
   :root {
     --main-font-size: 15px;}
+    .title01 h1 {
+      line-height: 1.8;
+    }
     .title01 {
       font-size: 15px;
       letter-spacing: 1.4px;
