@@ -20,29 +20,14 @@ const footerData = {
   },
   social: [
     {
-      icon: FaFacebookF,
-      link: "https://www.facebook.com/",
-      label: "Facebook",
-    },
-    {
       icon: FaInstagram,
-      link: "https://www.instagram.com/",
+      link: "https://www.instagram.com/aquini.india?igsh=YXp5ZDgxajlzMDJ4",
       label: "Instagram",
     },
     {
       icon: FaLinkedinIn,
-      link: "https://www.linkedin.com/",
+      link: "https://www.linkedin.com/company/aquini/",
       label: "LinkedIn",
-    },
-    {
-      icon: FaXTwitter,
-      link: "https://twitter.com/",
-      label: "Twitter",
-    },
-    {
-      icon: FaYoutube,
-      link: "https://www.youtube.com/",
-      label: "YouTube",
     },
   ],
 };
