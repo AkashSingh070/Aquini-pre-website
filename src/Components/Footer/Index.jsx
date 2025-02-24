@@ -52,7 +52,7 @@ const Index = ({ isActive, isMobile }) => {
 
   const ContactIcon = ({ icon: Icon, children }) => (
     <div className="flex items-center gap-2 primary-color fill-primary  mx-auto md:mx-0 justify-center md:justify-start">
-      <Icon className="!w-8 !h-8 primary-color fill-primary" />
+      <Icon className="sm:!w-8 sm:!h-8 !w-6 !h-6  primary-color fill-primary" />
       {children}
     </div>
   );
@@ -76,7 +76,7 @@ const Index = ({ isActive, isMobile }) => {
                 <br /> Dive into the Aquini Consumer Handbook
               </h2>
             </div>
-            <span className="uppercase primary-color Heading_font text-[16px] tracking-[1.5px] mx-auto inline-block mb-10">
+            <span className="uppercase primary-color Heading_font sm:text-[16px] text-[15px] tracking-[1.5px] mx-auto inline-block sm:mb-10 mb-5 ">
               Download {isMobile ? "Brochure" : "Now"}
             </span>
             <i className="primary-color fill-primary text-[40px]">
@@ -85,7 +85,7 @@ const Index = ({ isActive, isMobile }) => {
           </div>
 
           {/* Top Footer Section */}
-          <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 xl:py-24 md:py-12 md:my-10">
+          <div className="flex flex-wrap justify-center md:justify-between border-y border-white/10 py-7 my-7 mb-3 sm:mb-7 xl:py-24 md:py-12 md:my-10">
             {/* Contact Info */}
             <div className="w-full sm:w-1/2 xl:w-1/6  mb-8 xl:mb-0 text-center md:text-left">
               <ul className="space-y-3 mx-auto w-fit">

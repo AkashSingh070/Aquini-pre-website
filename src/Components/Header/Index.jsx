@@ -11,7 +11,7 @@ export default function Header({ isLoaded, onDownload, onLogo }) {
         <div className="flex items-center md:justify-between justify-center w-[94%]  mx-auto  ">
           {/* Logo */}
           <div
-            className={`w-[48%] md:w-[160px] lg:w-[180px] 2xl:w-[240px] cursor-pointer opacity-0 ease duration-400 delay-200 ${
+            className={`w-[180px] sm:w-[160px] lg:w-[180px] 2xl:w-[240px] cursor-pointer opacity-0 ease duration-400 delay-200 ${
               isLoaded ? "opacity-100" : ""
             }`}
             onClick={onLogo}

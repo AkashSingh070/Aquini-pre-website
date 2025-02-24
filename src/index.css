@@ -183,3 +183,8 @@ section {
     --main-font-size: 15px;}
 
 }
+@media all and (max-width: 480px) {
+  :root {
+    --main-font-size: 14px;}
+
+}
