@@ -202,9 +202,11 @@ section {
     .title02 h2 {
       font-size: 9px;
       letter-spacing: 6px;
+      line-height: 1;
     }
     .title02 h2 span {
       font-size: 30px;
+      line-height: 40px;
       line-height: 1.5;
     }
     .title02 h2 p {
