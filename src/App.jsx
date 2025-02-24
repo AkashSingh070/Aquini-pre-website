@@ -8,6 +8,12 @@ import img01 from "./assets/01.webp";
 import img02 from "./assets/02.webp";
 import img03 from "./assets/03.webp";
 import BGimg03 from "./assets/slideBG-01.webp";
+import mobileBg1 from "./assets/bg01.webp";
+import mobileBg2 from "./assets/bg02.webp";
+import mobileBg3 from "./assets/bg03.webp";
+import mobilebanner1 from "./assets/banner01.webp";
+import mobilebanner2 from "./assets/banner02.webp";
+import mobilebanner3 from "./assets/banner03.webp";
 
 // Register GSAP plugins (only Observer is needed now)
 gsap.registerPlugin(Observer);
@@ -22,6 +28,20 @@ const AnimatedSections = () => {
   const currentSlideRef = useRef(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 786);
+
+  useEffect(() => {
+    // Handler to update state based on window width
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 786);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Ref arrays for elements (using callback refs in JSX)
   const sectionsRef = useRef([]);
@@ -231,13 +251,21 @@ const AnimatedSections = () => {
               <div
                 ref={(el) => (imagesRef.current[0] = el)}
                 className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
-                style={{ backgroundImage: `url(${BGimg03})` }}
+                style={{
+                  backgroundImage: `url(${
+                    isSmallScreen ? mobileBg1 : BGimg03
+                  })`,
+                }}
               >
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[0] = el)}
-                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
-                  style={{ backgroundImage: `url(${img03})` }}
+                  className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  style={{
+                    backgroundImage: `url(${
+                      isSmallScreen ? mobilebanner1 : img03
+                    })`,
+                  }}
                 >
                   <div className="relative z-10 text-center w-full h-full">
                     <div
@@ -281,13 +309,19 @@ const AnimatedSections = () => {
               <div
                 ref={(el) => (imagesRef.current[1] = el)}
                 className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
-                style={{ backgroundImage: `url(${img02})` }}
+                style={{
+                  backgroundImage: `url(${isSmallScreen ? mobileBg2 : img02})`,
+                }}
               >
                 <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[1] = el)}
-                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
-                  style={{ backgroundImage: `url(${img02})` }}
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  style={{
+                    backgroundImage: `url(${
+                      isSmallScreen ? mobilebanner2 : img02
+                    })`,
+                  }}
                 >
                   <div className="relative z-10 text-center md:w-full w-11/12 mx-auto h-full flex flex-col md:flex-row justify-end ">
                     <div
@@ -345,13 +379,19 @@ const AnimatedSections = () => {
               <div
                 ref={(el) => (imagesRef.current[2] = el)}
                 className="flex justify-center items-end flex-col bg-cover bg-no-repeat relative overflow-hidden h-screen w-screen"
-                style={{ backgroundImage: `url(${img01})` }}
+                style={{
+                  backgroundImage: `url(${isSmallScreen ? mobileBg3 : img01})`,
+                }}
               >
                 <div className="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[2] = el)}
-                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95vh] w-[95vw]"
-                  style={{ backgroundImage: `url(${img01})` }}
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  style={{
+                    backgroundImage: `url(${
+                      isSmallScreen ? mobilebanner3 : img01
+                    })`,
+                  }}
                 >
                   <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
                     <div
