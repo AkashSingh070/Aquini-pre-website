@@ -286,16 +286,24 @@ const AnimatedSections = () => {
                   })`,
                 }}
               >
-                <div className="absolute inset-0 bg-black/5 backdrop-blur-md"></div>
+                <div className="absolute inset-0 bg-black/5 backdrop-blur-md backdrop_blur"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[0] = el)}
                   className="inner-container mx-auto md:h-[85dvh]  md:w-[84vw]  md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] flex justify-center items-center m-auto h-[95dvh] w-[95vw]"
+                  // style={{
+                  //   background: "#151513",
+                  // }}
                   style={{
                     backgroundImage: `url(${
                       isSmallScreen ? mobilebanner1 : img03
                     })`,
                   }}
                 >
+                  {/* <div
+                    className={`w-full h-full absolute inner_image_01 ${
+                      activeSlide === 0 && isLoaded ? "isActiveSlide" : ""
+                    }`}
+                  /> */}
                   <div className="relative z-10 text-center w-full h-full">
                     <div
                       className={`title title01 w-[230px] sm:w-[250px] md:w-auto ${
@@ -344,7 +352,7 @@ const AnimatedSections = () => {
                   backgroundImage: `url(${isSmallScreen ? mobileBg2 : img02})`,
                 }}
               >
-                <div className="absolute inset-0 bg-black/10 backdrop-blur-lg"></div>
+                <div className="absolute inset-0 bg-black/10 backdrop-blur-lg backdrop_blur"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[1] = el)}
                   className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
@@ -416,7 +424,7 @@ const AnimatedSections = () => {
                   backgroundImage: `url(${isSmallScreen ? mobileBg3 : img01})`,
                 }}
               >
-                <div className="absolute inset-0 bg-black/30 backdrop-blur-lg"></div>
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-lg backdrop_blur"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[2] = el)}
                   className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
