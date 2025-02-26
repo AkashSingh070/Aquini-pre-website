@@ -115,7 +115,7 @@ const Index = ({ isActive, isMobile }) => {
                   <li key={index}>
                     <a
                       href={`mailto:${email}`}
-                      className="text-neutral-300 hover:text-white lowercase tracking-[1.5px]"
+                      className="text-neutral-300 hover:text-white  tracking-[1.5px] uppercase"
                     >
                       {email}
                     </a>
