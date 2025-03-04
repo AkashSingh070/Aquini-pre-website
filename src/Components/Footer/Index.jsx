@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { LuDownload } from "react-icons/lu";
+import brochure from "../../assets/Aquini_Product_Catalogue.pdf";
 
 const footerData = {
   contact: {
@@ -64,9 +65,11 @@ const Index = ({ isActive, isMobile }) => {
             <span className="uppercase primary-color Heading_font sm:text-[16px] text-[15px] tracking-[1.5px] mx-auto inline-block sm:mb-10 mb-7 ">
               Download {isMobile ? "Brochure" : "Now"}
             </span>
-            <i className="primary-color fill-primary text-[40px]">
-              <LuDownload />
-            </i>
+            <a href={brochure} target="_blank">
+              <i className="primary-color fill-primary text-[40px]">
+                <LuDownload />
+              </i>
+            </a>
           </div>
 
           {/* Top Footer Section */}
@@ -97,7 +100,7 @@ const Index = ({ isActive, isMobile }) => {
                   <ContactIcon icon={FaMapMarkerAlt} />
                 </li>
                 <li
-                  className="text-neutral-300 hover:text-white whitespace-pre-line tracking-[1.5px] leading-[1.5]"
+                  className="text-neutral-300 hover:text-white whitespace-pre-line tracking-[1.5px] leading-[1.5] uppercase"
                   dangerouslySetInnerHTML={{
                     __html: footerData.contact.address,
                   }}
