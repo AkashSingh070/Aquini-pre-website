@@ -15,7 +15,7 @@ import brochure from "../../assets/Aquini_Product_Catalogue.pdf";
 const footerData = {
   contact: {
     phones: ["+91 94127 27707"],
-    email: ["Sales@aquini.com"],
+    email: ["sales@aquini.com"],
     address:
       "AQUA PLUMBINGS PVT. LTD.<br/>Gaur Udyog Kendra<br/>Delhi-Mathura Bypass<br/>Mathura - 281001(U.P.), India",
   },
@@ -83,7 +83,7 @@ const Index = ({ isActive, isMobile }) => {
                 {footerData.contact.phones.map((phone, index) => (
                   <li key={index}>
                     <a
-                      href={`tel:${phone}`}
+                      href={`tel:9412727707`}
                       className="text-neutral-300 hover:text-white tracking-[1.5px]"
                     >
                       {phone}
