@@ -331,8 +331,7 @@ const AnimatedSections = () => {
             </div>
           </div>
         </section>
-
-        {/* Second Section */}
+        {/* /* Second Section */}
         <section
           ref={(el) => (sectionsRef.current[1] = el)}
           id="second"
@@ -364,11 +363,16 @@ const AnimatedSections = () => {
                   }}
                 >
                   <video
-                    autoPlay
-                    loop
+                    autoPlay={activeSlide === 1}
                     muted
                     playsInline
                     className="absolute inset-0 w-full h-auto object-cover"
+                    onPlay={(e) => {
+                      if (activeSlide !== 1) {
+                        e.target.pause();
+                      }
+                    }}
+                    key={activeSlide === 1 ? "playing" : "paused"}
                   >
                     <source src={BgVideo02} type="video/mp4" />
                   </video>
@@ -412,7 +416,6 @@ const AnimatedSections = () => {
             </div>
           </div>
         </section>
-
         {/* Third Section */}
         <section
           ref={(el) => (sectionsRef.current[2] = el)}
@@ -470,7 +473,6 @@ const AnimatedSections = () => {
             </div>
           </div>
         </section>
-
         {/* Footer Section */}
         <section
           ref={(el) => (sectionsRef.current[3] = el)}
