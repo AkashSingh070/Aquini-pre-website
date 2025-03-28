@@ -14,6 +14,7 @@ import mobileBg3 from "./assets/bg03.webp";
 import mobilebanner1 from "./assets/banner01.webp";
 import mobilebanner2 from "./assets/banner02.webp";
 import mobilebanner3 from "./assets/banner03.webp";
+import BgVideo02 from "./assets/Section02Vedio.mp4";
 
 // Register GSAP plugins (only Observer is needed now)
 gsap.registerPlugin(Observer);
@@ -355,13 +356,22 @@ const AnimatedSections = () => {
                 <div className="absolute inset-0 bg-black/10 backdrop-blur-lg backdrop_blur"></div>
                 <div
                   ref={(el) => (innerContainersRef.current[1] = el)}
-                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw]"
+                  className="inner-container mx-auto md:h-[85dvh] md:w-[84vw] md:aspect-video z-10 shadow-2xl bg-cover md:mt-[150px] h-[95dvh] w-[95vw] relative"
                   style={{
                     backgroundImage: `url(${
-                      isSmallScreen ? mobilebanner2 : img02
+                      isSmallScreen ? mobilebanner2 : ""
                     })`,
                   }}
                 >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-auto object-cover"
+                  >
+                    <source src={BgVideo02} type="video/mp4" />
+                  </video>
                   <div className="relative z-10 text-center xl:w-full w-11/12 mx-auto h-full flex flex-col xl:flex-row justify-end ">
                     <div
                       className={`title xl:w-1/2 xl:text-[1.8vw] lg:text-[40px] md:text-[30px] sm:text-[4.5dvw] text-[4.1vw]  w-full tracking-[3px] flex items-center xl:justify-center xl:mt-[25%] xl:ml-10 sm:mb-5 mb-4 xl:mb-0 ${
